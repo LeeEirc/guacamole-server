@@ -461,6 +461,7 @@ static int rdp_guac_client_wait_for_messages(guac_client* client,
  *     desired, non-zero if an error occurs or the connection was disconnected
  *     and a reconnect is NOT desired.
  */
+ // TODO: 连接处理的主流程
 static int guac_rdp_handle_connection(guac_client* client) {
 
     guac_rdp_client* rdp_client = (guac_rdp_client*) client->data;
@@ -609,6 +610,8 @@ static int guac_rdp_handle_connection(guac_client* client) {
 
         /* Flush frame only if successful */
         else {
+
+        	// 最终给user 发送display
             guac_common_display_flush(rdp_client->display);
             guac_client_end_frame(client);
             guac_socket_flush(client->socket);

@@ -1223,6 +1223,7 @@ static void __guac_common_surface_transfer(guac_common_surface* src, int* sx, in
 
 }
 
+// 初始化一个surface
 guac_common_surface* guac_common_surface_alloc(guac_client* client,
         guac_socket* socket, const guac_layer* layer, int w, int h) {
 
@@ -1975,6 +1976,7 @@ static void __guac_common_surface_flush(guac_common_surface* surface) {
 
 }
 
+// TODO: 更新display 最终走到这个地方
 void guac_common_surface_flush(guac_common_surface* surface) {
 
     pthread_mutex_lock(&surface->_lock);

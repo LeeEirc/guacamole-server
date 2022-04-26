@@ -209,7 +209,7 @@ BOOL guac_rdp_gdi_patblt(rdpContext* context, PATBLT_ORDER* patblt) {
     return TRUE;
 
 }
-
+// TODO: 这里也有copy
 BOOL guac_rdp_gdi_scrblt(rdpContext* context, const SCRBLT_ORDER* scrblt) {
 
     guac_client* client = ((rdp_freerdp_context*) context)->client;
@@ -232,7 +232,7 @@ BOOL guac_rdp_gdi_scrblt(rdpContext* context, const SCRBLT_ORDER* scrblt) {
     return TRUE;
 
 }
-
+//  TODO: 这里有copy
 BOOL guac_rdp_gdi_memblt(rdpContext* context, MEMBLT_ORDER* memblt) {
 
     guac_client* client = ((rdp_freerdp_context*) context)->client;

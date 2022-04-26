@@ -74,6 +74,7 @@ BOOL guac_rdp_bitmap_new(rdpContext* context, rdpBitmap* bitmap) {
 
 }
 
+// TODO: 这里有copy
 BOOL guac_rdp_bitmap_paint(rdpContext* context, rdpBitmap* bitmap) {
 
     guac_client* client = ((rdp_freerdp_context*) context)->client;

@@ -115,6 +115,7 @@ static void guac_common_display_free_layers(guac_common_display_layer* layers,
  * @return
  *     The newly-allocated display or NULL if display cannot be allocated.
  */
+ // 初始化 display
 guac_common_display* guac_common_display_alloc(guac_client* client,
         int width, int height) {
 
@@ -299,6 +300,7 @@ static void guac_common_display_remove_layer(guac_common_display_layer** head,
 
 }
 
+// TODO:  增加 新的 guac_common_display_add_layer
 guac_common_display_layer* guac_common_display_alloc_layer(
         guac_common_display* display, int width, int height) {
 
@@ -323,6 +325,7 @@ guac_common_display_layer* guac_common_display_alloc_layer(
 
 }
 
+// TODO: 这个加入 增加 新的 guac_common_display_add_layer
 guac_common_display_layer* guac_common_display_alloc_buffer(
         guac_common_display* display, int width, int height) {
 

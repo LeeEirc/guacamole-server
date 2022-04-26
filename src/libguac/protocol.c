@@ -244,6 +244,7 @@ int guac_protocol_send_audio(guac_socket* socket, const guac_stream* stream,
 
 }
 
+// TODO: send blob
 int guac_protocol_send_blob(guac_socket* socket, const guac_stream* stream,
         const void* data, int count) {
 
@@ -415,6 +416,7 @@ int guac_protocol_send_clipboard(guac_socket* socket, const guac_stream* stream,
 
 }
 
+// TODO: send copy
 int guac_protocol_send_copy(guac_socket* socket,
         const guac_layer* srcl, int srcx, int srcy, int w, int h,
         guac_composite_mode mode, const guac_layer* dstl, int dstx, int dsty) {
@@ -482,6 +484,7 @@ int guac_protocol_send_cstroke(guac_socket* socket,
 
 }
 
+// TODO: send cursor
 int guac_protocol_send_cursor(guac_socket* socket, int x, int y,
         const guac_layer* srcl, int srcx, int srcy, int w, int h) {
     int ret_val;
@@ -547,6 +550,7 @@ int guac_protocol_send_disconnect(guac_socket* socket) {
 
 }
 
+// TODO: send dispose
 int guac_protocol_send_dispose(guac_socket* socket, const guac_layer* layer) {
 
     int ret_val;
@@ -591,6 +595,8 @@ int guac_protocol_send_distort(guac_socket* socket, const guac_layer* layer,
 
 }
 
+
+// TODO: send end
 int guac_protocol_send_end(guac_socket* socket, const guac_stream* stream) {
 
     int ret_val;
@@ -798,6 +804,8 @@ int guac_protocol_send_lstroke(guac_socket* socket,
 
 }
 
+
+// TODO: send mouse
 int guac_protocol_send_mouse(guac_socket* socket, int x, int y,
         int button_mask, guac_timestamp timestamp) {
 
@@ -940,6 +948,7 @@ int guac_protocol_send_pipe(guac_socket* socket, const guac_stream* stream,
 
 }
 
+// TODO: send img
 int guac_protocol_send_img(guac_socket* socket, const guac_stream* stream,
         guac_composite_mode mode, const guac_layer* layer,
         const char* mimetype, int x, int y) {
@@ -1141,6 +1150,7 @@ int guac_protocol_send_shade(guac_socket* socket, const guac_layer* layer,
 
 }
 
+// TODO: send size
 int guac_protocol_send_size(guac_socket* socket, const guac_layer* layer,
         int w, int h) {
 
