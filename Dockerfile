@@ -41,6 +41,7 @@ RUN apk add --no-cache                \
         make                          \
         openssl1.1-compat-dev         \
         pango-dev                     \
+        ffmpeg-dev                    \
         pulseaudio-dev                \
         util-linux-dev
 
@@ -145,6 +146,10 @@ RUN ${BUILD_DIR}/src/guacd-docker/bin/list-dependencies.sh \
         ${PREFIX_DIR}/lib/freerdp2/*guac*.so   \
         > ${PREFIX_DIR}/DEPENDENCIES
 
+
+RUN ${BUILD_DIR}/src/guacd-docker/bin/list-dependencies.sh \
+        ${PREFIX_DIR}/sbin/guacenc               \
+        > ${PREFIX_DIR}/GUACENC_DEPENDENCIES
 # Use same Alpine version as the base for the runtime image
 FROM alpine:${ALPINE_BASE_IMAGE}
 
@@ -175,27 +180,7 @@ RUN apk add --no-cache                \
         ttf-dejavu                    \
         ttf-liberation                \
         util-linux-login && \
-    xargs apk add --no-cache < ${PREFIX_DIR}/DEPENDENCIES
+    xargs apk add --no-cache < ${PREFIX_DIR}/DEPENDENCIES && \
+    xargs apk add --no-cache < ${PREFIX_DIR}/GUACENC_DEPENDENCIES
 
-# Checks the operating status every 5 minutes with a timeout of 5 seconds
-HEALTHCHECK --interval=5m --timeout=5s CMD nc -z 127.0.0.1 4822 || exit 1
-
-# Create a new user guacd
-ARG UID=1000
-ARG GID=1000
-RUN groupadd --gid $GID guacd
-RUN useradd --system --create-home --shell /sbin/nologin --uid $UID --gid $GID guacd
-
-# Run with user guacd
-USER guacd
-
-# Expose the default listener port
-EXPOSE 4822
-
-# Start guacd, listening on port 0.0.0.0:4822
-#
-# Note the path here MUST correspond to the value specified in the 
-# PREFIX_DIR build argument.
-#
-CMD /opt/guacamole/sbin/guacd -b 0.0.0.0 -L $GUACD_LOG_LEVEL -f
 
