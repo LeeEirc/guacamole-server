@@ -99,7 +99,7 @@ ARG FREERDP_OPTS="\
     -DWITH_SERVER_INTERFACE=OFF \
     -DWITH_SHADOW_MAC=OFF \
     -DWITH_SHADOW_X11=OFF \
-    -DWITH_SSE2=ON \
+    -DWITH_SSE2=OFF \
     -DWITH_WAYLAND=OFF \
     -DWITH_X11=OFF \
     -DWITH_X264=OFF \
@@ -148,7 +148,7 @@ RUN ${BUILD_DIR}/src/guacd-docker/bin/list-dependencies.sh \
 
 
 RUN ${BUILD_DIR}/src/guacd-docker/bin/list-dependencies.sh \
-        ${PREFIX_DIR}/sbin/guacenc               \
+        ${PREFIX_DIR}/bin/guacenc              \
         > ${PREFIX_DIR}/GUACENC_DEPENDENCIES
 # Use same Alpine version as the base for the runtime image
 FROM alpine:${ALPINE_BASE_IMAGE}
