@@ -179,6 +179,7 @@ RUN apk add --no-cache                \
         terminus-font                 \
         ttf-dejavu                    \
         ttf-liberation                \
+        ffmpeg                        \
         util-linux-login && \
     xargs apk add --no-cache < ${PREFIX_DIR}/DEPENDENCIES && \
     xargs apk add --no-cache < ${PREFIX_DIR}/GUACENC_DEPENDENCIES
