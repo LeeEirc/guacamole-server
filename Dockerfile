@@ -184,4 +184,5 @@ RUN apk add --no-cache                \
     xargs apk add --no-cache < ${PREFIX_DIR}/DEPENDENCIES && \
     xargs apk add --no-cache < ${PREFIX_DIR}/GUACENC_DEPENDENCIES
 
-
+# Add guacenc to path
+RUN ln -s /opt/guacamole/bin/guacenc  /usr/bin/guacenc
