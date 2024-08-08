@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/go
+{
+	"name": "guacamole-server-dev",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"build": {
+        // Path is relative to the devcontainer.json file.
+        "dockerfile": "Dockerfile-base"
+    },
+	"features": {
+		// c/c++ support
+
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "go version",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"github.copilot",
+				"ms-vscode.cpptools", // C/C++ extension by Microsoft
+				"ms-vscode.cmake-tools", // CMake Tools extension (optional)
+				"twxs.cmake",// CMake syntax highlighting (optional)，
+				"ms-vscode.cpptools-extension-pack",
+				"github.copilot-chat"
+			]
+		}
+	},
+
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
