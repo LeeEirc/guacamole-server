@@ -69,9 +69,6 @@ typedef struct guac_socket_fd_data {
      */
     pthread_mutex_t buffer_lock;
 
-    char basename[GUAC_COMMON_RECORDING_MAX_NAME_LENGTH];
-
-    int64_t total_written;
 
 } guac_socket_fd_data;
 
