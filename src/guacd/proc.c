@@ -335,6 +335,7 @@ static void guacd_exec_proc(guacd_proc* proc, const char* protocol) {
 
     /* Init client for selected protocol */
     guac_client* client = proc->client;
+    guacd_log(GUAC_LOG_WARNING, "connection protocol: %s", protocol);
     if (guac_client_load_plugin(client, protocol)) {
 
         /* Log error */

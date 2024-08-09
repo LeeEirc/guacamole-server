@@ -150,7 +150,7 @@ guac_recording* guac_recording_create(guac_client* client,
     if (create_path && _mkdir(path) && errno != EEXIST) {
 #endif
         guac_client_log(client, GUAC_LOG_ERROR,
-                "Creation of recording failed: %s", strerror(errno));
+                "Creation of recording failed: %s %s", strerror(errno), path);
         return NULL;
     }
 
