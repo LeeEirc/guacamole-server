@@ -30,6 +30,7 @@ FROM alpine:${ALPINE_BASE_IMAGE} AS builder
 # Install build dependencies
 RUN apk add --no-cache                \
         gdb                           \
+        ffmpeg-dev                    \
         openssh                       \
         autoconf                      \
         automake                      \
@@ -61,6 +62,8 @@ RUN apk add --no-cache                \
 # NOTE: Due to limitations of the Docker image build process, this value is
 # duplicated in an ARG in the second stage of the build.
 #
+# FreeRDP version (default to version 3)
+ARG FREERDP_VERSION=3
 ENV PREFIX_DIR=/opt/guacamole
 
 #
@@ -68,19 +71,14 @@ ENV PREFIX_DIR=/opt/guacamole
 # library (these can be overridden at build time if a specific version is
 # needed)
 #
-ENV WITH_FREERDP='2(\.\d+)+'
-ENV WITH_LIBSSH2='libssh2-\d+(\.\d+)+'
-ENV WITH_LIBTELNET='\d+(\.\d+)+'
-ENV WITH_LIBVNCCLIENT='LibVNCServer-\d+(\.\d+)+'
-ENV WITH_LIBWEBSOCKETS='v\d+(\.\d+)+'
+ARG WITH_FREERDP="${FREERDP_VERSION}(\.\d+)+"
+ARG WITH_LIBSSH2='libssh2-\d+(\.\d+)+'
+ARG WITH_LIBTELNET='\d+(\.\d+)+'
+ARG WITH_LIBVNCCLIENT='LibVNCServer-\d+(\.\d+)+'
+ARG WITH_LIBWEBSOCKETS='v\d+(\.\d+)+'
 
-#
-# Default build options for each core protocol support library, as well as
-# guacamole-server itself (these can be overridden at build time if different
-# options are needed)
-#
 
-ENV FREERDP_OPTS="\
+ARG FREERDP_OPTS="\
     -DBUILTIN_CHANNELS=OFF \
     -DCHANNEL_URBDRC=OFF \
     -DWITH_ALSA=OFF \
@@ -123,20 +121,20 @@ ENV FREERDP_OPTS="\
     -DWITH_XV=OFF \
     -DWITH_ZLIB=ON"
 
-ENV GUACAMOLE_SERVER_OPTS="\
+ARG GUACAMOLE_SERVER_OPTS="\
     --disable-guaclog"
 
-ENV LIBSSH2_OPTS="\
+ARG LIBSSH2_OPTS="\
     -DBUILD_EXAMPLES=OFF \
     -DBUILD_SHARED_LIBS=ON"
 
-ENV LIBTELNET_OPTS="\
+ARG LIBTELNET_OPTS="\
     --disable-static \
     --disable-util"
 
-ENV LIBVNCCLIENT_OPTS=""
+ARG LIBVNCCLIENT_OPTS=""
 
-ENV LIBWEBSOCKETS_OPTS="\
+ARG LIBWEBSOCKETS_OPTS="\
     -DDISABLE_WERROR=ON \
     -DLWS_WITHOUT_SERVER=ON \
     -DLWS_WITHOUT_TESTAPPS=ON \
@@ -145,5 +143,7 @@ ENV LIBWEBSOCKETS_OPTS="\
     -DLWS_WITHOUT_TEST_SERVER=ON \
     -DLWS_WITHOUT_TEST_SERVER_EXTPOLL=ON \
     -DLWS_WITH_STATIC=OFF"
-
 RUN mkdir -p ${PREFIX_DIR}
+
+COPY build-dependencies.sh /tmp/build-dependencies.sh
+RUN /tmp/build-dependencies.sh
