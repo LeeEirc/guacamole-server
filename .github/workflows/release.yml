@@ -27,6 +27,11 @@ name: Checkout and Create Release Version
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     strategy:
       matrix:
         component: ['guacd']
@@ -70,6 +75,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v3
