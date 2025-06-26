@@ -90,7 +90,7 @@ jobs:
             VERSION=${{ github.event.inputs.version }}
             FREERDP_VERSION=${{ github.event.inputs.freerdp_version }}
           tags: |
-            ghcr.io/${{ github.repository }}/${{ matrix.component }}:${{ github.event.inputs.version }}-${{ matrix.distro }}
+            ghcr.io/leeeirc/${{ matrix.component }}:${{ github.event.inputs.version }}-${{ matrix.distro }}
           outputs: type=image,oci-mediatypes=true,compression=zstd,compression-level=3,force-compression=true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
