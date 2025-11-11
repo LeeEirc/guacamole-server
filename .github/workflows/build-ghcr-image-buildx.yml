@@ -23,7 +23,7 @@ on:
         required: true
 jobs:
   build-amd64:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     if: contains(inputs.PLATFORMS, 'linux/amd64')
     steps:
       - name: Checkout repository
@@ -57,7 +57,7 @@ jobs:
           provenance: false
 
   build-arm64:
-    runs-on: ubuntu-22.04-arm64
+    runs-on: ubuntu-24.04-arm
     if: contains(inputs.PLATFORMS, 'linux/arm64')
     steps:
       - name: Checkout repository
@@ -91,7 +91,7 @@ jobs:
           provenance: false
 
   merge-manifest:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: [build-amd64, build-arm64]
     if: inputs.PLATFORMS == 'linux/amd64,linux/arm64' || inputs.PLATFORMS == 'linux/arm64,linux/amd64'
     steps:
