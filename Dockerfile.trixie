@@ -26,7 +26,7 @@ FROM debian:trixie-slim AS builder
 
 # Copy source to container for sake of build
 ARG BUILD_DIR=/tmp/guacamole-server
-COPY . ${BUILD_DIR}
+
 
 # FreeRDP version (default to version 2)
 ARG FREERDP_VERSION=2
@@ -163,8 +163,12 @@ RUN set -ex \
     && apt-get install -y --no-install-recommends $BUILD_DEPENDENCIES \
     && apt-get install -y --no-install-recommends $TOOLS \
     && apt-get install -y --no-install-recommends gcc-multilib || true \
+    && apt-get install -y gcc-12 g++-12 \
+    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100 \
+    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100 \
     && echo "no" | dpkg-reconfigure dash
 
+COPY . ${BUILD_DIR}
 # Build guacamole-server and its core protocol library dependencies
 RUN ${BUILD_DIR}/src/guacd-docker/bin/build-all_trixie.sh
 
