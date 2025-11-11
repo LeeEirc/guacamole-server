@@ -126,7 +126,7 @@ esac
 # Build and install core protocol library dependencies
 #
 
-install_from_git "https://github.com/openssl/openssl" "$WITH_OPENSSL" $OPENSSL_OPTS
+# install_from_git "https://github.com/openssl/openssl" "$WITH_OPENSSL" $OPENSSL_OPTS
 install_from_git "https://github.com/FreeRDP/FreeRDP" "$WITH_FREERDP" $FREERDP_OPTS $FREERDP_OPTS_OVERRIDES
 install_from_git "https://github.com/libssh2/libssh2" "$WITH_LIBSSH2" $LIBSSH2_OPTS
 install_from_git "https://github.com/seanmiddleditch/libtelnet" "$WITH_LIBTELNET" $LIBTELNET_OPTS
