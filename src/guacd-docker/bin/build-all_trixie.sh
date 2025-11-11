@@ -29,7 +29,10 @@
 # used for C headers, locating libraries, etc.
 export CFLAGS="-I${PREFIX_DIR}/include"
 export LDFLAGS="-Wl,-rpath,${PREFIX_DIR}/lib -L${PREFIX_DIR}/lib"
-export PKG_CONFIG_PATH="${PREFIX_DIR}/lib/pkgconfig" 
+export PKG_CONFIG_PATH="${PREFIX_DIR}/lib/pkgconfig"
+
+## fix trixie build errors related to pointer type incompatibility
+export CFLAGS="${CFLAGS} -Wno-error=incompatible-pointer-types"
 
 # Ensure thread stack size will be 8 MB (glibc's default on Linux) rather than
 # 128 KB (musl's default)
