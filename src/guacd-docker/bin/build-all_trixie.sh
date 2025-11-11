@@ -31,13 +31,6 @@ export CFLAGS="-I${PREFIX_DIR}/include"
 export LDFLAGS="-Wl,-rpath,${PREFIX_DIR}/lib -L${PREFIX_DIR}/lib"
 export PKG_CONFIG_PATH="${PREFIX_DIR}/lib/pkgconfig"
 
-## fix trixie build errors related to pointer type incompatibility
-export CFLAGS="${CFLAGS} -Wno-error=incompatible-pointer-types"
-
-# Ensure thread stack size will be 8 MB (glibc's default on Linux) rather than
-# 128 KB (musl's default)
-export LDFLAGS="$LDFLAGS -Wl,-z,stack-size=8388608"
-
 ##
 ## Builds and installs the source at the given git repository, automatically
 ## switching to the version of the source at the tag/commit that matches the
