@@ -57,4 +57,4 @@ jobs:
           push: true
           build-args: VERSION=${{ inputs.VERSION }}
           file: Dockerfile.trixie
-          tags: ${{ env.IMAGE_PREFIX }}/${{ env.REPO }}:${{ inputs.IMAGE_TAG }}
+          tags: ${{ env.IMAGE_PREFIX }}/guacd:${{ inputs.IMAGE_TAG }}
