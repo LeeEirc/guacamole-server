@@ -44,6 +44,7 @@ ARG PREFIX_DIR=/opt/guacamole
 # library (these can be overridden at build time if a specific version is
 # needed)
 #
+ARG WITH_OPENSSL='OpenSSL_1(\_\d+\w*)+'
 ARG WITH_FREERDP="${FREERDP_VERSION}(\.\d+)+"
 ARG WITH_LIBSSH2='libssh2-\d+(\.\d+)+'
 ARG WITH_LIBTELNET='\d+(\.\d+)+'
@@ -55,6 +56,8 @@ ARG WITH_LIBWEBSOCKETS='v\d+(\.\d+)+'
 # guacamole-server itself (these can be overridden at build time if different
 # options are needed)
 #
+
+ARG OPENSSL_OPTS=""
 
 ARG FREERDP_OPTS="\
     -DBUILTIN_CHANNELS=OFF \
