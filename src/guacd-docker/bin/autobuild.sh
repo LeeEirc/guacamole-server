@@ -135,6 +135,9 @@ if [ -e CMakeLists.txt ]; then
     # Build and install
     cmake --build "${SRC_DIR}-build" --parallel "$BUILD_JOBS"
     cmake --install "${SRC_DIR}-build"
+elif [ -e config ]; then
+    ./config --prefix="$PREFIX_DIR" $BUILD_OPTS
+    make -j"$BUILD_JOBS" && make install
 else
     [ -e configure ] || autoreconf -fi
     ./configure --prefix="$PREFIX_DIR" $BUILD_OPTS
