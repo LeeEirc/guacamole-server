@@ -177,7 +177,8 @@ RUN set -ex \
 # Copy generic, automatic build script
 COPY ./src/guacd-docker/bin/autobuild.sh ${BUILD_DIR}/src/guacd-docker/bin/
 #
-
+# Build dependency: openssl
+# FROM builder AS openssl
 ARG PREFIX_DIR
 ARG WITH_OPENSSL
 ARG OPENSSL_OPTS=""
@@ -270,6 +271,7 @@ ARG GUACAMOLE_SERVER_X86_OPTS
 ARG PREFIX_DIR
 
 # Copy dependencies built in previous stages
+# COPY --from=openssl ${PREFIX_DIR} ${PREFIX_DIR}
 COPY --from=freerdp ${PREFIX_DIR} ${PREFIX_DIR}
 COPY --from=libssh2 ${PREFIX_DIR} ${PREFIX_DIR}
 COPY --from=libtelnet ${PREFIX_DIR} ${PREFIX_DIR}
