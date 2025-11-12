@@ -177,6 +177,10 @@ RUN set -ex \
 # Copy generic, automatic build script
 COPY ./src/guacd-docker/bin/autobuild.sh ${BUILD_DIR}/src/guacd-docker/bin/
 #
+
+ARG PREFIX_DIR
+ARG WITH_OPENSSL
+ARG OPENSSL_OPTS=""
 RUN ${BUILD_DIR}/src/guacd-docker/bin/autobuild.sh "OPENSSL" \
     "https://github.com/openssl/openssl"
 
