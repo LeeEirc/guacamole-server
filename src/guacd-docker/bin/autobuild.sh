@@ -124,6 +124,12 @@ else
     echo "Building $SRC_DIR ..."
 fi
 
+# for freerdp
+if [ -f "libfreerdp/core/info.c" ]; then
+    git apply /tmp/freerdp.patch
+fi
+
+
 # Configure build using CMake or GNU Autotools, whichever happens to be
 # used by the library being built
 if [ -e CMakeLists.txt ]; then
